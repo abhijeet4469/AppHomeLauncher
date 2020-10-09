@@ -1,0 +1,31 @@
+
+//To use this module:
+
+   Step I:
+   1. import com.acs.sdk.AppInformation;
+   2. import com.acs.sdk.ModalAppInfo;
+
+   Step II:
+   1. To initiate the AppInformation class use: AppInformation.getInstance() with dot(.) and call getInstalledApps(getApplicationContext()).
+      This will return the list of applications installed in your device.
+      // AppInformation.getInstance().getInstalledApps(getApplicationContext());
+
+   2. Installed application data is received as List with the Data class (ModalAppInfo)
+   List<ModalAppInfo> objectName = AppInformation.getInstance().getInstalledApps(getApplicationContext());
+
+
+
+// Class Info
+1. AppInformation.java class:
+   It is a Singleton class which contains getInstalledApps method which returns all the installed applications in your device.
+   If you wish to get system app then just comment the line: if (!isSystemPackage(p)) in getInstalledApps() function.
+
+2. ModalAppInfo.java class:
+   It is a data class / pojo class which contains application related parameters ie. icon,appName, packages, className, versionName,versionCode;
+   You can use the getter and setter properties of this class to access those parameters.
+
+3. AppInfoComparator.java
+   This class implements Comparator with data class ModalAppInfo to sort the installed application with the Name of application in ascending order.
+
+4. AppBroadCast.java
+   It identifies the activity of Application Installed or UnInstalled and notifies the user for the event.
